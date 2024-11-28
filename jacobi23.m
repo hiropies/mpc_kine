@@ -47,7 +47,6 @@ dzdthe2 = -L2*S2 - L3*S23 - L4*C23;
 dzdthe3 = -L3*S23 - L4*C23;
 
 J = [dxdthe2 dxdthe3;
-     dydthe2 dydthe3;
      dzdthe2 dzdthe3];
 % J_inv = inv(J);
 
