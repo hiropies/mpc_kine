@@ -1,5 +1,7 @@
 clear variables
-load("reference.mat");
+% load("reference.mat");
+load("ref23.mat");
+Ts = 100e-6;
 Ts_plant = 10e-6; % 10  [us]
 Ts_control = 100e-6;  % 100 [us]
 Ts_MPC = 0.01;    % 

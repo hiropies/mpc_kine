@@ -1,5 +1,5 @@
 clear variables
-Ts = 100e-6;
+Ts = 100e-5;
 size = [20,0];
 T = 2.0;
 theta = -90.0;
@@ -45,12 +45,11 @@ end
 
 pos_go_traj = vertcat(pos_ref_go,joint_rad);
 pos_go_traj = vertcat(pos_go_traj,pos_ref_end);
-
+%pos_ref = array2timetable(motor_rad,'SampleRate',1/Ts);
 pos_ref = array2timetable(pos_go_traj,'SampleRate',1/Ts);
 pos_ref2 = array2timetable(pos_go_traj(:,2),'SampleRate',1/Ts);
 pos_ref3 = array2timetable(pos_go_traj(:,3),'SampleRate',1/Ts);
 save('reference.mat',"pos_ref");
-save('ref23.mat',"pos_ref2","pos_ref3");
 % save('D:\user\Desktop\abe\matlab\sim\20240918_軌跡シミュ_四角\reference.mat',"pos_ref");
 
 %{
