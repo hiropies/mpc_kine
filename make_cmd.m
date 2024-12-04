@@ -37,7 +37,6 @@ time_ramp = 1.0;
 pos_ref_go = zeros((time_ramp)/Ts+1,6);
 pos_ref_end = zeros((1.0)/Ts,6);
 for i = 1:6
-    disp(joint_rad(1,i));
     pos_go = trapezoidal(joint_rad(1,i),time_ramp,Ts);
     pos_ref_go(:,i) = pos_go;
     pos_ref_end(:,i) = joint_rad(LH(1),i);
@@ -49,7 +48,13 @@ pos_go_traj = vertcat(pos_go_traj,pos_ref_end);
 pos_ref = array2timetable(pos_go_traj,'SampleRate',1/Ts);
 pos_ref2 = array2timetable(pos_go_traj(:,2),'SampleRate',1/Ts);
 pos_ref3 = array2timetable(pos_go_traj(:,3),'SampleRate',1/Ts);
-save('reference.mat',"pos_ref");
+qref2_M_deg = rad2deg_array(pos_ref2.Var1);
+qref3_M_deg = rad2deg_array(pos_ref3.Var1);
+pos_ref2 = qref2_M_deg;
+pos_ref3 = qref2_M_deg;
+%pos_ref2 = array2timetable(qref2_M_deg,'SampleRate',1/Ts,'VariableNames',{'Var1'});
+%pos_ref3 = array2timetable(qref3_M_deg,'SampleRate',1/Ts,'VariableNames',{'Var1'});
+%save('reference.mat',"pos_ref");
 save('ref23.mat',"pos_ref2","pos_ref3");
 % save('D:\user\Desktop\abe\matlab\sim\20240918_軌跡シミュ_四角\reference.mat',"pos_ref");
 

@@ -3,10 +3,10 @@ X_max = scale(1)/2;
 X_min = -scale(1)/2;
 Y_max = scale(2)/2;
 Y_min = -scale(2)/2;
-disp(X_max);
-disp(X_min);
-disp(Y_max);
-disp(Y_min);
+%disp(X_max);
+%disp(X_min);
+%disp(Y_max);
+%disp(Y_min);
 
 miniT = (T/4);
 mT_step = miniT/Ts;

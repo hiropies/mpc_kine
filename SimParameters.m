@@ -1,10 +1,14 @@
 clear variables
 % load("reference.mat");
+addpath('func\');
+run("make_cmd.m");
 load("ref23.mat");
+long_cmd = length(pos_ref2);
 Ts = 100e-6;
 Ts_plant = 10e-6; % 10  [us]
 Ts_control = 100e-6;  % 100 [us]
-Ts_MPC = 0.01;    % 
+%Ts_MPC = 0.01;    % 
+Ts_MPC = Ts;
 
 Kt1 = 4* 0.070504;
 Rg1 = 120;
@@ -131,4 +135,6 @@ ylabel('Slack variable');
 title('Slack');
 grid on;
 %}
+save("param.mat");
+params = load("param.mat");
 disp('Finished');
