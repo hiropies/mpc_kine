@@ -62,7 +62,7 @@ pos_ref3 = qref3_M_rad;
 %save('reference.mat',"pos_ref");
 save('ref23.mat',"pos_ref2","pos_ref3");
 % save('D:\user\Desktop\abe\matlab\sim\20240918_軌跡シミュ_四角\reference.mat',"pos_ref");
-
+%{
 x_ = goal_shift.pos(2,:);
 y_ = goal_shift.pos(3,:);
 z_ = goal_shift.pos(4,:);
@@ -139,3 +139,4 @@ hold on;
 xlabel({'time[s]'},'FontSize',font, 'color','k');
 ylabel({'Axis3_M[rad]'},'FontSize',font, 'color','k');
 grid on;
+%}

@@ -67,8 +67,8 @@ T = [1,0; 0,1];        %Constraint selection vector. Select which states are to 
 u2c = 50*Rg2;    %Input constraint i.e. q2 limit
 u3c = 50*Rg3;    %Input constraint i.e. q3 limit
 % du1c = 100; %Input rate of change i.e. q1 limit
-du2c = 100; %Input rate of change i.e. q2 limit
-du3c = 100; %Input rate of change i.e. q3 limit
+du2c = 1.5; %Input rate of change i.e. q2 limit
+du3c = 1.5; %Input rate of change i.e. q3 limit
 u_MAX = [u2c;
          u3c];
 u_MIN = [-u2c;
@@ -79,8 +79,8 @@ du_MIN = [-du2c;
           -du3c;];
 
 %Weights (Reference tracking, input penalization and input rate penalization)
-w_E = 100;
-w_DU = 0.1;
+w_E = 1;
+w_DU = 0.0;
 w_A = 0.0;
 
 %P: Prediction horizon / L: Control horizon
