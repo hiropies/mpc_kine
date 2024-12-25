@@ -25,7 +25,7 @@ w1 = 50.0;
 zeta1 = 1.0;
 Kvp1 = (Jm1*w1*zeta1)/Kt1;
 Kvi1 = (w1*w1*Jm1)/Kt1;
-Kpp1 = 2.0;
+Kpp1 = 10.0;
 
 Kt2 = (0.07354) * (4);
 Rg2 = 121;
@@ -38,7 +38,7 @@ w2 = 50.0;
 zeta2 = 1.0;
 Kvp2 = (Jm2*w2*zeta2)/Kt2;
 Kvi2 = (w2*w2*Jm2)/Kt2;
-Kpp2 = 5.0;
+Kpp2 = 10.0;
 
 Kt3 = (0.0631765) * (4);
 Rg3 = 121;
@@ -51,7 +51,7 @@ w3 = 50.0;
 zeta3 = 1.0;
 Kvp3 = (Jm3*w3*zeta3)/Kt3;
 Kvi3 = (w3*w3*Jm3)/Kt3;
-Kpp3 = 5.0;
+Kpp3 = 10.0;
 
 %% State-space representation
 n= 2; %Dimension of state vector: We only have q2,q3
@@ -67,8 +67,9 @@ T = [1,0; 0,1];        %Constraint selection vector. Select which states are to 
 u2c = 50*Rg2;    %Input constraint i.e. q2 limit
 u3c = 50*Rg3;    %Input constraint i.e. q3 limit
 % du1c = 100; %Input rate of change i.e. q1 limit
-du2c = 1.5; %Input rate of change i.e. q2 limit
-du3c = 1.5; %Input rate of change i.e. q3 limit
+du2c = 100; %Input rate of change i.e. q2 limit
+du3c = 100; %Input rate of change i.e. q3 limit
+
 u_MAX = [u2c;
          u3c];
 u_MIN = [-u2c;
@@ -79,7 +80,7 @@ du_MIN = [-du2c;
           -du3c;];
 
 %Weights (Reference tracking, input penalization and input rate penalization)
-w_E = 1;
+w_E = 1.0;
 w_DU = 0.0;
 w_A = 0.0;
 
