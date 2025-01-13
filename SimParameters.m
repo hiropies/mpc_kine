@@ -64,11 +64,11 @@ T = [1,0; 0,1];        %Constraint selection vector. Select which states are to 
 
 %% 制約について
 % u1c = 5;    %Input constraint i.e. q1 limit
-u2c = 50*Rg2;    %Input constraint i.e. q2 limit
-u3c = 50*Rg3;    %Input constraint i.e. q3 limit
+u2c = 50 * pi / 180.0;    %Input constraint i.e. q2 limit
+u3c = 30 * pi / 180.0;   %Input constraint i.e. q3 limit
 % du1c = 100; %Input rate of change i.e. q1 limit
 du2c = 100; %Input rate of change i.e. q2 limit
-du3c = 100; %Input rate of change i.e. q3 limit
+du3c = 10; %Input rate of change i.e. q3 limit
 
 u_MAX = [u2c;
          u3c];
@@ -80,7 +80,7 @@ du_MIN = [-du2c;
           -du3c;];
 
 %Weights (Reference tracking, input penalization and input rate penalization)
-w_E = 1.0;
+w_E = 10.0;
 w_DU = 0.0;
 w_A = 0.0;
 
