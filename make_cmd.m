@@ -57,6 +57,8 @@ qref2_M_rad = deg2rad_array(qref2_M_deg);
 qref3_M_rad = deg2rad_array(qref3_M_deg);
 pos_ref2 = qref2_M_rad;
 pos_ref3 = qref3_M_rad;
+pos_ref2 = cmd_rad(:,2);
+pos_ref3 = cmd_rad(:,3);
 %pos_ref2 = array2timetable(qref2_M_deg,'SampleRate',1/Ts,'VariableNames',{'Var1'});
 %pos_ref3 = array2timetable(qref3_M_deg,'SampleRate',1/Ts,'VariableNames',{'Var1'});
 %save('reference.mat',"pos_ref");

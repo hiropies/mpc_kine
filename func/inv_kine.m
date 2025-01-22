@@ -1,5 +1,5 @@
 function joint = inv_kine(Goal)
-%Goal = [x,y,z];
+%Goal = [x,y,z]; mm
 Lac = 0.2685;
 Lb  = 0.16;
 Ld  = 0.0880;
@@ -43,6 +43,8 @@ Axis1 = (pi - (Theta1_1 + Theta1_2))/pi*180;
 
 goal = kinematics(Axis0,Axis1,Axis2,0,0,0);
 ph = [goal.full(12,1),goal.full(12,2),goal.full(12,3)];
-% disp(ph)
+disp(ph)
 
-joint = [-Axis0,-Axis1,Axis2,0,0,0];
+%% 上位プログラムと整合のため、1軸及び2軸に-1をかけていたが、バグの温床となるため消去。
+%% 全体の見直しが必要
+joint = [Axis0,Axis1,Axis2,0,0,0];

@@ -2,7 +2,7 @@ clear variables
 % load("reference.mat");
 addpath('func\');
 run("make_cmd.m");
-load("ref23.mat");
+load("ref23.mat"); %ref23.matは~~~.mで作成
 
 Ts = 100e-6;
 Ts_plant = 10e-6; % 10  [us]
@@ -13,6 +13,8 @@ Ts_MPC = Ts;
 long_cmd = length(pos_ref2);
 pos_ref2_tt = array2timetable(pos_ref2,'SampleRate',1/Ts);
 pos_ref3_tt = array2timetable(pos_ref3,'SampleRate',1/Ts);
+% q2_init = pos_ref2(1);
+% q3_init = pos_ref3(1);
 
 Kt1 = 4* 0.070504;
 Rg1 = 120;
@@ -65,10 +67,14 @@ T = [1,0; 0,1];        %Constraint selection vector. Select which states are to 
 %% 制約について
 % u1c = 5;    %Input constraint i.e. q1 limit
 u2c = 50 * pi / 180.0;    %Input constraint i.e. q2 limit
-u3c = 30 * pi / 180.0;   %Input constraint i.e. q3 limit
+u3c = 50 * pi / 180.0;   %Input constraint i.e. q3 limit
 % du1c = 100; %Input rate of change i.e. q1 limit
-du2c = 100; %Input rate of change i.e. q2 limit
-du3c = 10; %Input rate of change i.e. q3 limit
+% du2c = 100; %Input rate of change i.e. q2 limit
+% du3c = 100; %Input rate of change i.e. q3 limit
+du2c = 200 * pi / 180; %Input rate of change i.e. q2 limit
+du3c = 200 * pi / 180; %Input rate of change i.e. q3 limit
+% du2c = 50 / Rg2; %Input rate of change i.e. q2 limit
+% du3c = 50 / Rg3; %Input rate of change i.e. q3 limit
 
 u_MAX = [u2c;
          u3c];
@@ -81,7 +87,7 @@ du_MIN = [-du2c;
 
 %Weights (Reference tracking, input penalization and input rate penalization)
 w_E = 10.0;
-w_DU = 0.0;
+w_DU = 0.001;
 w_A = 0.0;
 
 %P: Prediction horizon / L: Control horizon
@@ -89,6 +95,7 @@ P = 10;
 L = 2;
 
 % [J0,J0_inv] = jacobi3(0,0,0);
+% J0 = jacobi23(q2_init,q3_init);
 J0 = jacobi23(0,0);
 
 [Q,q1,q2,D,DU_MAX,DU_MIN,U_MAX,U_MIN, M, LT, W_E, W_DU, W_A, Sv, Sa, n, ng] = LinearMPCPrecomputer(J0,T,P,L,w_E,w_DU,w_A,u_MAX,u_MIN,du_MAX,du_MIN,Ts_MPC);
